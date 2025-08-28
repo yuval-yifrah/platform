@@ -8,5 +8,11 @@ RUN apt-get update && apt-get install -y ca-certificates curl gnupg lsb-release 
     && rm -rf /var/lib/apt/lists/*
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+ && apt-get install -y unzip \
+ && unzip awscliv2.zip \
+ && ./aws/install \
+ && rm -rf aws awscliv2.zip
+
 USER jenkins
 
