@@ -4,17 +4,19 @@ services:
     build: .
     container_name: jenkins
     restart: always
+    privileged: true
     ports:
-      - "8080:8080"       
-      - "50000:50000"       
+      - "8080:8080"
+      - "50000:50000"
     volumes:
-      - jenkins-data:/var/jenkins_home     
-      - /var/run/docker.sock:/var/run/docker.sock 
-      - /usr/bin/docker:/usr/bin/docker    
-      - ~/.aws:/home/jenkins/.aws          
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - ~/.aws:/root/.aws
     environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock  
-    user: jenkins    
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    user: root
+
 volumes:
   jenkins-data:
 
