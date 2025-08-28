@@ -10,4 +10,5 @@ credentials-binding
 generic-webhook-trigger
 webhook-step
 generic-event
+multibranch-scan-webhook-trigger
 
