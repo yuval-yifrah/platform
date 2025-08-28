@@ -7,4 +7,7 @@ configuration-as-code
 job-dsl
 aws-credentials
 credentials-binding
+generic-webhook-trigger
+webhook-step
+generic-event
 
