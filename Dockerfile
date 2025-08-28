@@ -11,5 +11,19 @@ RUN apt-get update && apt-get install -y ca-certificates curl gnupg lsb-release 
     && rm -rf /var/lib/apt/lists/*
 
 # Install AWS CLI v2
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awsc_
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install \
+    && ln -s /usr/local/bin/aws /usr/bin/aws \
+    && rm -rf aws awscliv2.zip
+
+# Install Jenkins plugins
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+
+# Add Jenkins user to docker group
+RUN groupadd -g 999 docker || true && usermod -aG docker jenkins
+
+USER jenkins
+
 
