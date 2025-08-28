@@ -21,9 +21,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
-# Add Jenkins user to docker group
+# Create docker group and add jenkins user
 RUN groupadd -g 999 docker || true && usermod -aG docker jenkins
 
 USER jenkins
-
-
