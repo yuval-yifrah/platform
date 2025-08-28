@@ -25,4 +25,3 @@ RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 RUN groupadd -g 999 docker || true && usermod -aG docker jenkins
 
 USER jenkins
-
